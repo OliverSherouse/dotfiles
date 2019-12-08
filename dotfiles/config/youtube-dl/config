@@ -1,0 +1,8 @@
+--netrc
+--yes-playlist
+--mark-watched
+--embed-subs
+--cookies ~/.config/youtube-dl/cookies
+--restrict-filenames
+--format (bestvideo+bestaudio/best),[height<=720]
+

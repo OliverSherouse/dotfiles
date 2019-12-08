@@ -1,2 +1,10 @@
-bash/history
-bash/local
+dotfiles/bash/history
+dotfiles/bash/local
+dotfiles/config/*
+!dotfiles/config/qtile
+!dotfiles/config/youtube-dl
+!dotfiles/config/youtube-dl/cookies
+!dotfiles/config/mpv
+dotfiles/config/mpv/watch_later
+!dotfiles/config/dunst
+__pycache__
