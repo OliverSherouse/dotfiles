@@ -13,17 +13,11 @@ except ImportError:
     pass
 mod = "mod4"
 
-Theme = collections.namedtuple(
-    "Theme", ["fg", "bg", "selected_fg", "selected_bg"]
-)
+Theme = collections.namedtuple("Theme", ["fg", "bg", "selected_fg", "selected_bg"])
 
-arc = Theme(
-    fg="#D3DAE3", bg="#383C4A", selected_fg="#D3DAE3", selected_bg="#5294e2"
-)
+arc = Theme(fg="#D3DAE3", bg="#383C4A", selected_fg="#D3DAE3", selected_bg="#5294e2")
 
-adapta = Theme(
-    fg="#cfd8dc", bg="#263238", selected_fg="#ffffff", selected_bg="#00bcd4"
-)
+adapta = Theme(fg="#cfd8dc", bg="#263238", selected_fg="#ffffff", selected_bg="#00bcd4")
 
 theme = arc
 terminal = "lxterminal"
@@ -79,7 +73,7 @@ layouts = [
         border_focus_stack=theme.selected_bg,
         border_normal=theme.bg,
         border_normal_stack=theme.bg,
-        borderwidth=2,
+        border_width=1,
     ),
 ]
 
@@ -88,7 +82,7 @@ widget_defaults = dict(
     background=theme.bg,
     foreground=theme.fg,
     font="Noto Sans",
-    fontsize=14,
+    fontsize=16,
     padding=3,
     borderwidth=0,
 )
@@ -128,10 +122,7 @@ mouse = [
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod],
-        "Button3",
-        lazy.window.set_size_floating(),
-        start=lazy.window.get_size(),
+        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size(),
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
