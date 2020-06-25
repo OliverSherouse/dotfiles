@@ -8,4 +8,5 @@ dotfiles/config/youtube-dl/cookies
 dotfiles/config/mpv/watch_later
 dotfiles/config/mpv/scripts
 !dotfiles/config/dunst
+!dotfiles/config/flake8
 __pycache__
