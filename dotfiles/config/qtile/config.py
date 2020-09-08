@@ -43,20 +43,22 @@ keys = [
     Key([mod], "i", lazy.spawn(os.environ.get("BROWSER", "chromium"))),
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout()),
+    Key([mod], "m", lazy.window.toggle_maximize()),
+    Key([mod, "shift"], "space", lazy.window.toggle_floating()),
     Key([mod], "q", lazy.window.kill()),
     Key([mod, "control"], "r", lazy.restart()),
     Key(
         [mod, "control"],
         "q",
         lazy.spawn(
-            "logout_menu"
+            "logout-menu"
             # "lxde-logout"
         ),
     ),
     Key([mod], "r", lazy.spawncmd()),
     Key([mod], "o", lazy.spawn("op")),
-    Key([], "XF86MonBrightnessUp", lazy.spawn("xbacklight +5")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn("xbacklight -5")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl s +5%")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl s 5%-")),
     Key([], "XF86Display", lazy.spawn("lxrandr")),
 ]
 
@@ -122,7 +124,10 @@ mouse = [
         start=lazy.window.get_position(),
     ),
     Drag(
-        [mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size(),
+        [mod],
+        "Button3",
+        lazy.window.set_size_floating(),
+        start=lazy.window.get_size(),
     ),
     Click([mod], "Button2", lazy.window.bring_to_front()),
 ]
@@ -151,7 +156,7 @@ floating_layout = layout.Floating(
         {"wmclass": "ssh-askpass"},  # ssh-askpass
     ]
 )
-auto_fullscreen = True
+auto_fullscreen = False
 focus_on_window_activation = "smart"
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
