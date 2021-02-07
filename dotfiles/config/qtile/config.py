@@ -20,7 +20,7 @@ arc = Theme(fg="#D3DAE3", bg="#383C4A", selected_fg="#D3DAE3", selected_bg="#529
 adapta = Theme(fg="#cfd8dc", bg="#263238", selected_fg="#ffffff", selected_bg="#00bcd4")
 
 theme = arc
-terminal = "lxterminal"
+terminal = "kitty"
 
 keys = [
     Key([mod], "j", lazy.layout.down()),
@@ -51,7 +51,7 @@ keys = [
         [mod, "control"],
         "q",
         lazy.spawn(
-            "logout-menu"
+            "logout_menu"
             # "lxde-logout"
         ),
     ),
@@ -156,7 +156,7 @@ floating_layout = layout.Floating(
         {"wmclass": "ssh-askpass"},  # ssh-askpass
     ]
 )
-auto_fullscreen = False
+auto_fullscreen = True
 focus_on_window_activation = "smart"
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
