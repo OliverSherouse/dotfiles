@@ -1,0 +1,45 @@
+#! /usr/bin/env python3
+import argparse
+
+import gi
+
+gi.require_version("Gtk", "3.0")
+
+from gi.repository import Gtk  # noqa: E402
+
+
+def print_color(color):
+    print(color)
+    print(
+        "#{:02x}{:02x}{:02x}".format(
+            int(color.red * 255), int(color.green * 255), int(color.blue * 255)
+        )
+    )
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument(
+    "state",
+    default="normal",
+    choices=[i.lower() for i in dir(Gtk.StateFlags) if i.isupper()],
+    nargs="?",
+)
+parser.add_argument("color")
+args = parser.parse_args()
+
+# Create an empty style context
+style_ctx = Gtk.StyleContext()
+
+# Create an empty widget path
+widget_path = Gtk.WidgetPath()
+
+# Specify the widget class type you want to get colors from
+widget_path.append_type(Gtk.Window)
+style_ctx.set_path(widget_path)
+breakpoint()
+state = getattr(Gtk.StateFlags, args.state.upper())
+
+if args.color == "foreground-color":
+    print_color(style_ctx.get_color(state))
+else:
+    print_color(style_ctx.get_property(args.color, state))

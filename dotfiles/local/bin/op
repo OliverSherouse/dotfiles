@@ -1,0 +1,6 @@
+#! /usr/bin/bash
+if [ -n "$1" ]; then
+    xdg-open "$1"
+else
+    xdg-open "$(zenity --file-selection)"
+fi

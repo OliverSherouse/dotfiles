@@ -1,0 +1,3 @@
+#! /bin/bash
+
+lxterminal -e "ipython -ic \"from math import *\""
