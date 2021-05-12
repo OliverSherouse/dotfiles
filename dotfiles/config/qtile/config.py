@@ -40,7 +40,7 @@ keys = [
     Key([mod, "shift"], "Return", lazy.layout.toggle_split()),
     Key([mod], "Return", lazy.spawn(terminal)),
     Key([mod], "e", lazy.spawn(f"{terminal} -e ranger")),
-    Key([mod], "i", lazy.spawn(os.environ.get("BROWSER", "chromium"))),
+    Key([mod], "i", lazy.spawn(os.environ.get("BROWSER", "firefox"))),
     # Toggle between different layouts as defined below
     Key([mod], "space", lazy.next_layout()),
     Key([mod], "m", lazy.window.toggle_maximize()),
@@ -57,7 +57,10 @@ keys = [
     ),
     Key([mod], "r", lazy.spawncmd()),
     Key([mod], "o", lazy.spawn("op")),
-    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl s +5%")),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -q sset Master 5%+")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -q sset Master 5%-")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer -q sset Master toggle")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl s 5%+")),
     Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl s 5%-")),
     Key([], "XF86Display", lazy.spawn("lxrandr")),
 ]
@@ -85,7 +88,7 @@ widget_defaults = dict(
     foreground=theme.fg,
     font="Noto Sans",
     fontsize=16,
-    padding=3,
+    padding=5,
     borderwidth=0,
 )
 extension_defaults = widget_defaults.copy()
@@ -101,15 +104,28 @@ screens = [
                     this_screen_border=theme.selected_bg,
                     this_current_screen_border=theme.selected_bg,
                     rounded=False,
-                    padding=2,
                     borderwidth=1,
                 ),
                 widget.Prompt(),
                 widget.Spacer(),
                 widget.Systray(),
+                widget.Volume(
+                    volume_app="myxer",
+                    theme_path="/usr/share/icons/Faenza-Dark/",
+                    padding=3,
+                ),
+                widget.Battery(
+                    format="{char} {percent:.0%}",
+                    show_short_text=False,
+                    discharge_char="\N{DOWNWARDS WHITE ARROW}",
+                    charge_char="\N{UPWARDS WHITE ARROW}",
+                    full_char="\N{WHITE CIRCLE}",
+                    notify_below=20,
+                    hide_threshold=0.5,
+                ),
                 widget.Clock(format="%l:%M "),
             ],
-            30,
+            24,
             background=theme.bg,
         )
     )
