@@ -27,7 +27,13 @@ def main():
     target = Path(os.environ["HOME"]).resolve()
     source = Path(__file__).resolve().parent.joinpath("dotfiles")
     for subpath in source.iterdir():
-        link(target.joinpath("." + subpath.name), subpath)
+        subtarget = target.joinpath(*f".{subpath.name}".split("__"))
+        if subtarget.is_dir():
+            subtarget.mkdir(exist_ok=True, parents=True)
+            for subsubpath in subpath.iterdir():
+                link(subtarget.joinpath(subsubpath.name), subpath)
+        else:
+            link(subtarget, subpath)
 
 
 if __name__ == "__main__":

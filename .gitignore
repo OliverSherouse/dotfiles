@@ -1,12 +1,3 @@
 dotfiles/bash/history
-dotfiles/bash/local
-dotfiles/config/*
-!dotfiles/config/qtile
-!dotfiles/config/youtube-dl
-dotfiles/config/youtube-dl/cookies
-!dotfiles/config/mpv
-dotfiles/config/mpv/watch_later
-dotfiles/config/mpv/scripts
-!dotfiles/config/dunst
-!dotfiles/config/flake8
+dotfiles/bash/local.sh
 __pycache__

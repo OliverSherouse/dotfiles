@@ -2,6 +2,13 @@
 # ~/.bashrc
 #
 
+rcdebug(){
+   if [[ -n "$DEBUGRC" ]]; then
+       echo "$@"
+   fi
+}
+
+rcdebug "Sourcing Bashrc"
 set -o vi
 shopt -s cdspell
 shopt -s histappend
@@ -9,8 +16,20 @@ shopt -s globstar
 
 PS1='$ '
 
+
 [[ "$TERM" = "xterm" ]] && export TERM=xterm-256color
 
-[[ -e ~/.bash/aliases ]] && . ~/.bash/aliases
-[[ -e ~/.bash/functions ]] && . ~/.bash/functions
-[[ -e ~/.bash/local ]] && . ~/.bash/local
+rcsource() {
+    if [[ -e "$1" ]]; then
+        rcdebug "Sourcing $1"
+        source "$1"
+    fi
+}
+
+[[ -s "$XDG_DATA_HOME/asdf/completions/asdf.bash" ]]  && .  $XDG_DATA_HOME/asdf/completions/asdf.bash
+for complfile in $XDG_DATA_HOME/bash_completions/*; do rcsource $complfile; done
+
+for sourcefile in $HOME/.bash/*.sh; do rcsource $sourcefile; done
+
+unset sourcefiles
+unset -f rcsource rcdebug

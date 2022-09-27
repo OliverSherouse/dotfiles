@@ -1,7 +1,0 @@
-#! /bin/bash
-export VDPAU_DRIVER=va_gl
-export LIBVA_DRIVER_NAME=i965
-export QT_QPA_PLATFORMTHEME=gtk2
-
-setxkbmap -option caps:escape
-xinput set-prop 11 "libinput Tapping Enabled" 1

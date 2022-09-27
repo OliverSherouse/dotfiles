@@ -1,4 +1,3 @@
 #! /bin/bash
 [[ -e ~/.profile ]] && . ~/.profile
-[[ -n "$(type -P kitty)" ]] && source /dev/stdin <<<"$(kitty + complete setup bash)"
 [[ $- = *i* ]] && [[ -e ~/.bashrc ]] && . ~/.bashrc

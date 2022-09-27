@@ -1,34 +1,31 @@
 #! /bin/sh
 export EDITOR=vim
-
+export BROWSER=firefox
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 
+export R_LIBS_USER="$XDG_DATA_HOME/r_libs"
 
-[ -e /etc/profile ] && source /etc/profile
-
-[ "$(type -P ruby)" ] && export GEM_HOME=$(ruby -e 'print Gem.user_dir'); export PATH=$PATH:$GEM_HOME/bin
+export POETRY_VIRTUALENVS_IN_PROJECT=true
 
 # Path
 export PATH=$PATH:$HOME/.local/bin
+[ "$(type -P ruby)" ] && export GEM_HOME=$(ruby -e 'print Gem.user_dir'); export PATH=$PATH:$GEM_HOME/bin
+
 # Android Development
 [ $ANDROID_HOME ] && export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin
 
 # App files
+[[ -e $XDG_CONFIG_HOME/xdgvars/xdgvars.sh ]] && . $XDG_CONFIG_HOME/xdgvars/xdgvars.sh 
+
 export LESSHISTFILE=$XDG_DATA_HOME/less_history
 export HISTFILE=$XDG_DATA_HOME/bash_history
 
 export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdfrc
 export ASDF_DATA_DIR=$XDG_DATA_HOME/asdf
+[ -e "$XDG_DATA_HOME/asdf/asdf.sh" ]  && . $XDG_DATA_HOME/asdf/asdf.sh
 
-[[ -e $XDG_CONFIG_HOME/xdgvars/xdgvars.sh ]] && . $XDG_CONFIG_HOME/xdgvars/xdgvars.sh 
+[ -n "$SSH\_AGENT\_PID" ] || eval "$(ssh-agent -s)" > /dev/null
 
-[[ -e $HOME/.profile_local ]] && . $HOME/.profile_local
-
-eval $(ssh-agent) >> /dev/null
-if [ -n "$DESKTOP_SESSION" ];then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
-fi
-
+[ -e $HOME/.profile_local ] && . $HOME/.profile_local
