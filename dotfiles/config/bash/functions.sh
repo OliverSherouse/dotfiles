@@ -1,7 +1,7 @@
 #!/bin/bash
 
-[[ -n "$(type -P pacman)" ]] && . ~/.bash/functions/arch.sh
-[[ -n "$(type -P apt)" ]] && . ~/.bash/functions/deb.sh
+[[ -n "$(type -P pacman)" ]] && . $XDG_CONFIG_HOME/bash/functions/arch.sh
+[[ -n "$(type -P apt)" ]] && . $XDG_CONFIG_HOME/bash/functions/deb.sh
 
 function gitignore {
     curl -o .gitignore https://raw.githubusercontent.com/github/gitignore/master/$1.gitignore

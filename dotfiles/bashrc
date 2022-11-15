@@ -29,7 +29,7 @@ rcsource() {
 [[ -s "$XDG_DATA_HOME/asdf/completions/asdf.bash" ]]  && .  $XDG_DATA_HOME/asdf/completions/asdf.bash
 for complfile in $XDG_DATA_HOME/bash_completions/*; do rcsource $complfile; done
 
-for sourcefile in $HOME/.bash/*.sh; do rcsource $sourcefile; done
+for sourcefile in $XDG_CONFIG_HOME/bash/*.sh; do rcsource $sourcefile; done
 
 unset sourcefiles
 unset -f rcsource rcdebug

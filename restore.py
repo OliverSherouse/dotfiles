@@ -31,7 +31,7 @@ def main():
         if subtarget.is_dir():
             subtarget.mkdir(exist_ok=True, parents=True)
             for subsubpath in subpath.iterdir():
-                link(subtarget.joinpath(subsubpath.name), subpath)
+                link(subtarget.joinpath(subsubpath.name), subsubpath)
         else:
             link(subtarget, subpath)
 

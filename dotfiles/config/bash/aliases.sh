@@ -15,5 +15,11 @@ if [[ -n "$(type -P vim)" ]]; then
 fi
 [[ -n "$(type -P powertop)" ]] && alias powertop='sudo powertop'
 [[ -n "$(type -P python)" ]] && alias serve='python -m http.server'
-[[ -n "$(type -P docker-compose)" ]] && alias dcomp='docker-compose'
 [[ -n "$(type -P xclip)" ]] && alias xclip='xclip -selection clipboard'
+if [[ -n "$(type op)" ]]; then
+    alias git='op run --no-masking -- git'
+    if [[ -n "$(type -P docker-compose)" ]]; then
+        alias docker-compose='op run --no-masking -- docker-compose'
+    fi
+fi
+[[ -n "$(type -P docker-compose)" ]] && alias dcomp='docker-compose'
