@@ -14,12 +14,14 @@ alias ps='ps --forest'
 [[ -n "$(type -P xclip)" ]] && alias xclip='xclip -selection clipboard'
 if [[ -n "$(type nvim)" ]]; then
     alias vim='nvim'
-    alias less='nvim -R'
+    alias less='nvim -R' # +"set filetype=terminal|set concealcursor=nc"'
 fi
 if [[ -n "$(type op)" ]]; then
     alias git='op run --no-masking -- git'
     if [[ -n "$(type -P docker-compose)" ]]; then
         alias docker-compose='op run --no-masking -- docker-compose'
     fi
+    alias codex='op run --no-masking -- codex'
+    alias opencode='op run --no-masking -- opencode'
 fi
 [[ -n "$(type -P docker-compose)" ]] && alias dcomp='docker-compose'

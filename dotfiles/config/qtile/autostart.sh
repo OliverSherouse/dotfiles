@@ -1,6 +1,8 @@
 #! /bin/bash
 dunst &
+cbatticon &
 nitrogen --restore &
 udiskie --tray &
-picom &
+nm-applet &
+1password --silent &
 dex -a -e QTILE &

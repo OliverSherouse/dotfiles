@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+current_dir="$PWD"
+
+while true; do
+  if [[ -d "$current_dir/.venv" ]]; then
+    exec uv run ruff server
+  fi
+
+  if [[ "$current_dir" == "/" ]]; then
+    break
+  fi
+
+  current_dir="$(dirname "$current_dir")"
+done
+
+exec ruff server

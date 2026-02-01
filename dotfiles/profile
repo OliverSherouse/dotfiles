@@ -8,8 +8,10 @@ export XDG_DATA_HOME=$HOME/.local/share
 export POETRY_VIRTUALENVS_IN_PROJECT=true
 export DOCKER_BUILDKIT=1
 
+export XKB_DEFAULT_OPTIONS="caps:escape"
+
 # Path
-export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts:$HOME/.local/share/texlive/2024/bin/x86_64-linux/
 [ "$(type -P ruby)" ] && export GEM_HOME=$(ruby -e 'print Gem.user_dir'); export PATH=$PATH:$GEM_HOME/bin
 
 # App files
@@ -18,12 +20,6 @@ export PATH=$PATH:$HOME/.local/bin
 export LESSHISTFILE=$XDG_DATA_HOME/less_history
 export HISTFILE=$XDG_DATA_HOME/bash_history
 
-export ASDF_CONFIG_FILE=$XDG_CONFIG_HOME/asdfrc
-export ASDF_DATA_DIR=$XDG_DATA_HOME/asdf
-[ -e "$XDG_DATA_HOME/asdf/asdf.sh" ]  && . $XDG_DATA_HOME/asdf/asdf.sh
-
 [ -n "$SSH\_AGENT\_PID" ] || eval "$(ssh-agent -s)" > /dev/null
-
-export OPENAI_API_KEY="op://private/OpenAPI Vim Key/credential"
 
 [ -e $HOME/.profile_local ] && . $HOME/.profile_local

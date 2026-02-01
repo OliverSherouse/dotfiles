@@ -28,6 +28,7 @@ rcsource() {
 
 [[ -s "$XDG_DATA_HOME/asdf/completions/asdf.bash" ]]  && .  $XDG_DATA_HOME/asdf/completions/asdf.bash
 [[ -n "$(type -P fnm)" ]] && eval "$(fnm env --use-on-cd --shell bash)"
+[[ -n "$(type -P aws)" ]] && [[ -n "$(type -P aws_completer)" ]] && complete -C aws_completer aws
 
 
 for complfile in $XDG_DATA_HOME/bash_completions/*; do rcsource $complfile; done

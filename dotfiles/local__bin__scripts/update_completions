@@ -1,0 +1,16 @@
+#! /bin/bash
+
+set -euo pipefail
+
+: "${XDG_DATA_HOME:="$HOME/.local/share"}"
+compl_dir="$XDG_DATA_HOME/bash_completions"
+
+mkdir -p "$compl_dir"
+
+if [[ -n "$(type -P fnm)" ]]; then
+    fnm completions --shell bash >"$compl_dir/fnm.sh"
+fi
+
+if [[ -n "$(type -P cdktf)" ]]; then
+    cdktf completion bash >"$compl_dir/cdktf.sh"
+fi
