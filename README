@@ -1,1 +1,20 @@
-Just another dotfiles repo
+Dotfiles repo with a small, stdlib-only manager.
+
+## Mapping
+
+This repo uses merge/stow-style installs: `~/.config` stays a normal directory.
+Selected subtrees (e.g. `~/.config/qtile`) may be symlinked as whole directories.
+
+The `dotman` tool maps entries under `dotfiles/` into `$HOME` using these rules:
+
+- `dotfiles/<name>/...` -> `~/.<name>/...`
+  - Example: `dotfiles/ssh/config` -> `~/.ssh/config`
+- `dotfiles/<name>__<subpath>/...` -> `~/.<name>/<subpath>/...`
+  - Example: `dotfiles/config__qtile/` -> `~/.config/qtile`
+  - Example: `dotfiles/local__bin__scripts/stowconfig` -> `~/.local/bin/scripts/stowconfig`
+
+## Tooling
+
+- Install/refresh symlinks: `./dotman.py restore`
+- Adopt a live file/dir into the repo: `stowconfig PATH` (or `./dotman.py stow PATH`)
+- Un-adopt back to a normal file/dir: `./dotman.py unstow PATH`

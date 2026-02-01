@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Resolve the repo root via this script's real path.
+real_script="$(readlink -f "$0")"
+scripts_dir="$(dirname "$real_script")"
+dotfiles_dir="$(dirname "$scripts_dir")"
+repo_root="$(dirname "$dotfiles_dir")"
+
+exec python3 "$repo_root/dotman.py" stow "$@"
