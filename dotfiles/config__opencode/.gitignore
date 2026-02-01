@@ -1,0 +1,7 @@
+node_modules/
+.bun/
+
+# Local-only secrets / overrides (if you add them later)
+.env
+.env.*
+*.local.json
