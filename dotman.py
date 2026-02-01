@@ -499,7 +499,17 @@ def main() -> int:
         LOG.info("Self-test OK")
         return 0
 
-    cmd = args.cmd or "restore"
+    # If no subcommand is provided, default to `restore` with default values.
+    # Subcommand-specific flags (like --home/--force) are not available in that
+    # invocation form.
+    if args.cmd is None:
+        home = Path(os.environ.get("HOME", str(Path.home()))).expanduser().resolve()
+        source_root = default_source.expanduser().resolve()
+        return run_restore(
+            home=home, source_root=source_root, dry_run=False, force=False
+        )
+
+    cmd = args.cmd
 
     if cmd == "restore":
         home = Path(args.home).expanduser().resolve()
