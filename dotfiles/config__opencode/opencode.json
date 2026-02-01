@@ -1,5 +1,42 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "enabled_providers": ["openai"],
+  "small_model": "openai/gpt-5.2",
+  "provider": {
+    "openai": {
+      "options": {
+        "timeout": 600000
+      }
+    }
+  },
+  "agent": {
+    "plan": {
+      "mode": "primary",
+      "model": "openai/gpt-5.2"
+    },
+    "build": {
+      "mode": "primary",
+      "model": "openai/gpt-5.2-codex"
+    }
+  },
+  "share": "manual",
+  "autoupdate": "notify",
+  "watcher": {
+    "ignore": [
+      ".git/**",
+      "node_modules/**",
+      ".venv/**",
+      "__pycache__/**",
+      ".ruff_cache/**",
+      ".mypy_cache/**",
+      ".pytest_cache/**",
+      ".tox/**",
+      ".terraform/**",
+      "dist/**",
+      "build/**",
+      "coverage/**"
+    ]
+  },
   "lsp": {
     "pyright": { "disabled": true },
     "ruff": {
